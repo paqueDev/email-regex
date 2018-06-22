@@ -1,5 +1,15 @@
-'use strict';
+"use strict";
 
-var re = '[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*';
+var re = "[^\\.\\s@:](?:[^\\s@:]*[^\\s@:\\.])?@[^\\.\\s@]+(?:\\.[^\\.\\s@]+)*";
 
-module.exports = (options = {}) => options.exact ? new RegExp(`^${re}$`) : new RegExp(re, 'g');
+
+module.exports = function(options){
+	if(options.exact) {
+		return new RegExp(`^${re}$`);
+	}else{
+		return new RegExp(re, "g");
+	}
+}
+
+
+
