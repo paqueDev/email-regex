@@ -1,7 +1,7 @@
 import test from 'ava';
 import m from '.';
 
-const fixture = [
+var fixture = [
 	'sindresorhus@gmail.com',
 	'foo@bar',
 	'test@about.museum',
@@ -28,7 +28,7 @@ const fixture = [
 	'foo@[IPv6:2001:db8::2]'
 ];
 
-const fixtureNot = [
+var fixtureNot = [
 	'@',
 	'@io',
 	'@sindresorhus.com',
@@ -43,7 +43,7 @@ const fixtureNot = [
 ];
 
 test('extract', t => {
-	for (const x of fixture) {
+	for (let x of fixture) {
 		t.is((m().exec(`foo ${x} bar`) || [])[0], x);
 	}
 
@@ -51,13 +51,13 @@ test('extract', t => {
 });
 
 test('exact', t => {
-	for (const x of fixture) {
+	for (let x of fixture) {
 		t.true(m({exact: true}).test(x));
 	}
 });
 
 test('failures', t => {
-	for (const x of fixtureNot) {
+	for (let x of fixtureNot) {
 		t.false(m({exact: true}).test(x));
 	}
 });
